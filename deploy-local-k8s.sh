@@ -179,7 +179,7 @@ main() {
 
   local tmp_dir
   tmp_dir="$(mktemp -d)"
-  trap 'rm -rf "${tmp_dir}"' EXIT
+  trap "rm -rf -- '${tmp_dir}'" EXIT
 
   cp "${K8S_DIR}/namespace.yaml" "${tmp_dir}/namespace.yaml"
   cp "${K8S_DIR}/deployment.yaml" "${tmp_dir}/deployment.yaml"
