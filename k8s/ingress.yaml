@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wedding-web
+  namespace: wedding
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - petra-jozef.eu
+        - www.petra-jozef.eu
+      secretName: petra-jozef-eu-tls
+  rules:
+    - host: petra-jozef.eu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: wedding-web
+                port:
+                  number: 80
+    - host: www.petra-jozef.eu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: wedding-web
+                port:
+                  number: 80

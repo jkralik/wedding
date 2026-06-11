@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Petra a Jozef</title>
+  <desc id="desc">Dekoratívna ilustračná svadobná fotografia</desc>
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fde5c8"/>
+      <stop offset="1" stop-color="#f8cfa8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#g1)"/>
+  <circle cx="560" cy="390" r="150" fill="#fff5ea" opacity="0.75"/>
+  <circle cx="1040" cy="390" r="150" fill="#fff5ea" opacity="0.75"/>
+  <ellipse cx="800" cy="620" rx="450" ry="180" fill="#fff8f0" opacity="0.8"/>
+  <text x="800" y="470" text-anchor="middle" font-family="serif" font-size="96" fill="#925f30">Petra &amp; Jozef</text>
+  <text x="800" y="560" text-anchor="middle" font-family="sans-serif" font-size="44" fill="#7a5e44">Náš svadobný deň</text>
+</svg>

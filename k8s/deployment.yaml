@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wedding-web
+  namespace: wedding
+  labels:
+    app: wedding-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wedding-web
+  template:
+    metadata:
+      labels:
+        app: wedding-web
+    spec:
+      containers:
+        - name: web
+          image: ghcr.io/jkralik/wedding:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
