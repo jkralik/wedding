@@ -18,8 +18,8 @@ sv. Františka z Assisi.
 
 Vďaka za pochopenie, že svadba nie je pláž a ani nočný klub 😊
 
-- **Dámy:** Elegantné šaty či sukne (pokľadne po kolená) alebo kostým. Nechajme "minimalizmus v oblečení" pre iný čas.
-- **Páni:** Oblek, sako a kravata, alebo aspoň elegantná košeľa s nohavicami.
+- **Dámy:** Elegantné šaty, sukne či kostým po kolená. Nechajme "minimalizmus v oblečení" pre iný čas.
+- **Páni:** Oblek, sako, motýľ či kravata, alebo aspoň elegantná košeľa s nohavicami.
 
 *Stručne povedané: Menej kože, viac štýlu. Budeme vďační!* 💍
 
@@ -34,8 +34,8 @@ Vďaka za pochopenie, že svadba nie je pláž a ani nočný klub 😊
 
 Nežiadame žiadne dary, pre nás je najväčším darom možnosť podeliť sa s vami o radosť z daru, ktorý sme dostali.
 
-- Prosíme žiadne kvety, výbava domácnosti, prachozberače (ani sošky svätých – už máme 😄). Ak máte potrebu nám niečo venovať tak môžte [úmysel sv omše](https://dar.pallotini.sk/).
+- Prosíme žiadne kvety, výbava domácnosti, prachozberače ani anjelov. Ak máte potrebu nám niečo venovať tak môžte [úmysel na sv. omšu](https://dar.pallotini.sk/).
 
 ### Jedlo
 
-Máme pre vás pochúťky vo forme švédskych stolov (okrem polievky – tú si domov nebudete balíť 😄). Keď sa blíži polnoc a energie klesá, budú nachystané krabičky. Prosíme: **bez srabu si vezmite!** Všetko, čo ostane, si môžete vzať so sebou. Budeme vám dokonca vďační – pomôžete nám s upratovaním! 🍽️💪
+Máme pre vás pripravené švédskych stoly. Keď na stoly pribudnú krabičky na zabalenie, prosíme **bez hanby si vezmite**. Budeme vám vďační – pomôžete nám s upratovaním! 🍽️💪
