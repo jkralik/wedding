@@ -19,7 +19,7 @@ S radosťou a pokorou vás pozývame na naše vzájomné darovanie sa 💍
 Vďaka za pochopenie, že svadba nie je pláž a ani nočný klub 🫠
 
 - **Dámy:** Elegantné šaty, sukne či kostým po kolená. Nechajme "minimalizmus v oblečení" pre iný čas.
-- **Páni:** Oblek, sako, motýľ či kravata, alebo aspoň elegantná košeľa s nohavicami.
+- **Páni:** Oblek, sako, traky, motýľ či kravata, alebo aspoň elegantná košeľa s nohavicami.
 
 *Stručne povedané: Menej odhaľovania, viac štýlu* ❤️
 
