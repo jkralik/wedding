@@ -16,7 +16,7 @@ S radosťou a pokorou vás pozývame na naše vzájomné darovanie sa.
 
 ### Dress code
 
-Vďaka za pochopenie, že svadba nie je pláž a ani nočný klub 😊
+Vďaka za pochopenie, že svadba nie je pláž a ani nočný klub. 🙂
 
 - **Dámy:** Elegantné šaty, sukne či kostým po kolená. Nechajme "minimalizmus v oblečení" pre iný čas.
 - **Páni:** Oblek, sako, motýľ či kravata, alebo aspoň elegantná košeľa s nohavicami.
@@ -35,8 +35,8 @@ Vďaka za pochopenie, že svadba nie je pláž a ani nočný klub 😊
 Nežiadame žiadne dary - pre nás je najväčším darom možnosť podeliť sa s vami o radosť z daru, ktorý sme dostali.
 
 - **Prosíme žiadne kvety, výbava domácnosti, prachozberače, figúrky, sošky ani anjelov.** Môžte nám venovať [úmysel na sv. omšu](https://dar.pallotini.sk/).
-- Ak napriek tomu chete obdarovať nevestu kvetom, tak určite poteší biela ruža.
+- Ak napriek tomu chcete obdarovať nevestu kvetom, tak určite poteší biela ruža. 🙂
 
 ### Jedlo
 
-Máme pre vás pripravené švédske stoly. Keď na stoly pribudnú krabičky na zabalenie, prosíme **bez hanby si vezmite**. Budeme vám vďační – pomôžete nám s upratovaním! 🍽️💪
+Máme pre vás pripravené švédske stoly. Keď na stoly pribudnú krabičky, prosíme **bez hanby si zabalte jedlo**. Pomôžete nám tak s upratovaním! 🍽️💪
