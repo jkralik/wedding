@@ -133,11 +133,7 @@ load_image_to_local_cluster() {
 
   if [[ "${ctx}" == microk8s* ]]; then
     require_cmd microk8s
-    echo "Importing image into microk8s containerd"
-    if docker save "${image_ref}" | microk8s ctr images import - >/dev/null 2>&1; then
-      return 0
-    fi
-
+    echo "Importing image into microk8s containerd (namespace k8s.io)"
     docker save "${image_ref}" | microk8s ctr -n k8s.io images import -
     return 0
   fi
