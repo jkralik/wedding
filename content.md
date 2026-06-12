@@ -6,7 +6,7 @@ S radosťou a pokorou vás pozývame na naše vzájomné darovanie sa.
 
 ### Kedy a kde
 
-- **Dátum:** 11. júl 2026
+- **Dátum:** 11. Júl 2026
 - **Čas obradu:** 16:15
 - **Miesto:** [Bazilika v Marianke](https://maps.app.goo.gl/yMTfvSf2o2Sh55zF8)
 
