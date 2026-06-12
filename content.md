@@ -26,15 +26,15 @@ Vďaka za pochopenie, že svadba nie je pláž a ani nočný klub 😊
 ### Zábava
 
 - **Miesto:** [Kultúrny dom v Rohožníku](https://maps.app.goo.gl/L6UtJhH6N6mXFQpG8)
-- **19:00:** príchod pozvaných hostí
-- **21:30:** príchod kamarátov
-- **01:00:** koniec svadby
+- **19:00** príchod pozvaných hostí
+- **21:30** príchod kamarátov
+- **01:00** koniec svadby
 
 ### Dary
 
-Nežiadame žiadne dary, pre nás je najväčším darom možnosť podeliť sa s vami o radosť z daru, ktorý sme dostali.
+Nežiadame žiadne dary - pre nás je najväčším darom možnosť podeliť sa s vami o radosť z daru, ktorý sme dostali.
 
-- **Prosíme žiadne kvety, výbava domácnosti, prachozberače, figurky, sošky ani anjelov.** Môžte nám venovať [úmysel na sv. omšu](https://dar.pallotini.sk/).
+- **Prosíme žiadne kvety, výbava domácnosti, prachozberače, figúrky, sošky ani anjelov.** Môžte nám venovať [úmysel na sv. omšu](https://dar.pallotini.sk/).
 - Ak napriek tomu chete obdarovať nevestu kvetom, tak určite poteší biela ruža.
 
 ### Jedlo
