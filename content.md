@@ -25,7 +25,7 @@ Vďaka za pochopenie, že svadba nie je pláž a ani nočný klub 😊
 
 ### Zábava
 
-- Stretneme sa v **[kultúrnom dome Rohožníku](https://maps.app.goo.gl/L6UtJhH6N6mXFQpG8)**
+- Stretneme sa v [kultúrnom dome Rohožníku](https://maps.app.goo.gl/L6UtJhH6N6mXFQpG8)
 - O 19:00 príchod pozvaných hostí
 - O 21:30 príchod kamarátov
 - O 01:00 koniec svadby
