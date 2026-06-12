@@ -5,7 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 K8S_DIR="${SCRIPT_DIR}/k8s"
 
 IMAGE_NAME="wedding-web-local"
-IMAGE_TAG="dev"
+IMAGE_TAG="latest"
 WITH_INGRESS="true"
 WITH_TLS="true"
 NAMESPACE="wedding"
