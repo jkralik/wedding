@@ -39,4 +39,4 @@ Nežiadame žiadne dary - pre nás je najväčším darom možnosť podeliť sa 
 
 ### Jedlo
 
-Máme pre vás pripravené švédske stoly. Keď na stoly pribudnú krabičky, prosíme **bez hanby si zabalte jedlo**. Pomôžete nám tak s upratovaním 🍽️💪🤝
+Máme pre vás pripravené švédske stoly. Keď na stoly pribudnú krabičky, prosíme **bez hanby si zabaľte jedlo**. Pomôžete nám tak s upratovaním 🍽️💪🤝
