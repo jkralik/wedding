@@ -2,7 +2,7 @@
 
 ## Petra & Jozef
 
-S radosťou a pokorou vás pozývame na naše vzájomné darovanie sa.
+S radosťou a pokorou vás pozývame na naše vzájomné darovanie sa. 💍
 
 ### Kedy a kde
 
@@ -21,7 +21,7 @@ Vďaka za pochopenie, že svadba nie je pláž a ani nočný klub. 🫠
 - **Dámy:** Elegantné šaty, sukne či kostým po kolená. Nechajme "minimalizmus v oblečení" pre iný čas.
 - **Páni:** Oblek, sako, motýľ či kravata, alebo aspoň elegantná košeľa s nohavicami.
 
-*Stručne povedané: Menej odhaľovania, viac štýlu. Budeme vďační!* 💍
+*Stručne povedané: Menej odhaľovania, viac štýlu. Budeme vďační!* 🫶
 
 ### Zábava
 
