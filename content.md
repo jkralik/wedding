@@ -16,7 +16,7 @@ S radosťou a pokorou vás pozývame na naše vzájomné darovanie sa.
 
 ### Dress code
 
-Vďaka za pochopenie, že svadba nie je pláž a ani nočný klub. 🙂🙃🙂
+Vďaka za pochopenie, že svadba nie je pláž a ani nočný klub. 🫠
 
 - **Dámy:** Elegantné šaty, sukne či kostým po kolená. Nechajme "minimalizmus v oblečení" pre iný čas.
 - **Páni:** Oblek, sako, motýľ či kravata, alebo aspoň elegantná košeľa s nohavicami.
