@@ -34,7 +34,7 @@ Vďaka za pochopenie, že svadba nie je pláž a ani nočný klub 😊
 
 Nežiadame žiadne dary, pre nás je najväčším darom možnosť podeliť sa s vami o radosť z daru, ktorý sme dostali.
 
-- Prosíme žiadne kvety, výbava domácnosti, prachozberače ani anjelov. Ak máte potrebu nám niečo venovať tak môžte [úmysel na sv. omšu](https://dar.pallotini.sk/).
+- **Prosíme žiadne kvety, výbava domácnosti, prachozberače ani anjelov.** Ak máte potrebu nám niečo venovať tak môžte [úmysel na sv. omšu](https://dar.pallotini.sk/).
 
 ### Jedlo
 
