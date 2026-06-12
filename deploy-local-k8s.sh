@@ -4,7 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 K8S_DIR="${SCRIPT_DIR}/k8s"
 
-IMAGE_NAME="wedding-web-local"
+IMAGE_NAME="ghcr.io/jkralik/wedding"
 IMAGE_TAG="latest"
 WITH_INGRESS="true"
 WITH_TLS="true"
@@ -151,7 +151,6 @@ load_image_to_local_cluster() {
 main() {
   parse_args "$@"
 
-  require_cmd docker
   setup_kubectl
 
   if [[ "${WITH_TLS}" == "true" ]]; then
@@ -160,8 +159,14 @@ main() {
 
   local image_ref="${IMAGE_NAME}:${IMAGE_TAG}"
 
-  echo "Building image: ${image_ref}"
-  docker build -t "${image_ref}" "${SCRIPT_DIR}"
+  if [[ "${IMAGE_NAME}" == ghcr.io/* ]]; then
+    echo "Using remote registry image: ${image_ref}"
+    echo "Skipping local Docker build and local cluster image import."
+  else
+    require_cmd docker
+    echo "Building image: ${image_ref}"
+    docker build -t "${image_ref}" "${SCRIPT_DIR}"
+  fi
 
   local ctx
   ctx="$(current_context)"
@@ -177,7 +182,9 @@ main() {
     require_cmd microk8s
   fi
 
-  load_image_to_local_cluster "${image_ref}"
+  if [[ "${IMAGE_NAME}" != ghcr.io/* ]]; then
+    load_image_to_local_cluster "${image_ref}"
+  fi
 
   local tmp_dir
   tmp_dir="$(mktemp -d)"
@@ -226,8 +233,20 @@ EOF
   echo "Applying manifests"
   kctl apply -k "${tmp_dir}"
 
+  if [[ "${IMAGE_TAG}" == "latest" ]]; then
+    echo "Tag is 'latest' - forcing rollout restart to pull newest image."
+    kctl -n "${NAMESPACE}" rollout restart deployment/"${DEPLOYMENT_NAME}"
+  fi
+
+  local progressing_reason
+  progressing_reason="$(kctl -n "${NAMESPACE}" get deployment "${DEPLOYMENT_NAME}" -o jsonpath='{.status.conditions[?(@.type=="Progressing")].reason}' 2>/dev/null || true)"
+  if [[ "${progressing_reason}" == "ProgressDeadlineExceeded" ]]; then
+    echo "Detected stale ProgressDeadlineExceeded condition. Restarting deployment to recover rollout state."
+    kctl -n "${NAMESPACE}" rollout restart deployment/"${DEPLOYMENT_NAME}"
+  fi
+
   echo "Waiting for rollout"
-  kctl -n "${NAMESPACE}" rollout status deployment/"${DEPLOYMENT_NAME}" --timeout=120s
+  kctl -n "${NAMESPACE}" rollout status deployment/"${DEPLOYMENT_NAME}" --timeout=300s
 
   echo "Deployment finished."
   kctl -n "${NAMESPACE}" get pods -o wide
