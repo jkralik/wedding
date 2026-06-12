@@ -10,9 +10,9 @@ S radosťou a pokorou vás pozývame na naše vzájomné darovanie sa.
 - **Čas obradu:** 16:15
 - **Miesto:** [Bazilika v Marianke](https://maps.app.goo.gl/yMTfvSf2o2Sh55zF8)
 
-*Pane, urob ma nástrojom tvojho pokoja. Tam, kde je nenávisť, daj nech prinášam lásku; tam, kde je urážka, nech prinášam odpustenie; tam, kde je pochybnosť, vieru; tam, kde je zúfalstvo, nádej; tam, kde je tma, svetlo; tam, kde je smútok, radosť. Ó, Božský učiteľ daj, nech sa nesnažím byť povzbudzovaný, ale radšej nech povzbudzujem; byť pochopený, ale radšej nech pochopím; byť milovaný, ale radšej nech milujem. Pretože v dávaní prijímame; v odpustení dostávame odpustenie; v smrti sa rodíme do večného života.*
+*Pane, urob ma nástrojom Tvojho pokoja. Tam, kde je nenávisť, daj nech prinášam lásku; tam, kde je urážka, nech prinášam odpustenie; tam, kde je pochybnosť, vieru; tam, kde je zúfalstvo, nádej; tam, kde je tma, svetlo; tam, kde je smútok, radosť. Ó, Božský učiteľ daj, nech sa nesnažím byť povzbudzovaný, ale radšej nech povzbudzujem; byť pochopený, ale radšej nech pochopím; byť milovaný, ale radšej nech milujem. Pretože v dávaní prijímame; v odpustení dostávame odpustenie; v smrti sa rodíme do večného života.*
 
-sv. Františka z Assisi.
+*Sv. František z Assisi*
 
 ### Dress code
 
