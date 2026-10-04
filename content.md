@@ -1,3 +1,33 @@
+## 31.10.2026
+
+### Oslava Peťkiných 40. narodenín
+
+S radosťou vás pozývame na oslavu Peťkiných 40. narodenín!
+
+Začneme svätou omšou a potom sa presunieme do Pútnického domu, ktorý sa nachádza hneď vedľa kostola.
+
+Keďže oslava bude deň pred Sviatkom všetkých svätých, poteší nás, ak prídete oblečení ako niektorý zo svätých. Čaká vás voľná zábava a na občerstvenie rezne, ryža, opekané zemiaky a sladká voda.
+
+### Kedy a kde
+
+- **Dátum:** 31. októbra 2026
+- **Čas svätej omše:** 16:00
+- **Miesto:** [Bazilika v Marianke](https://maps.app.goo.gl/yMTfvSf2o2Sh55zF8)
+- **Koniec oslavy:** 20:00
+
+### Dary
+
+Nežiadame žiadne dary - pre nás je najväčším darom možnosť podeliť sa s vami o radosť z daru, ktorý sme dostali.
+
+- **Prosíme žiadne kvety, výbava domácnosti, prachozberače, figúrky, sošky ani anjelov.** Môžte nám venovať [úmysel na sv. omšu](https://dar.pallotini.sk/).
+- Ak napriek tomu chcete obdarovať nevestu kvetom, tak určite poteší biela ruža 🤍
+
+### Poďakovanie za dary zosvadby
+
+Ďakujeme vám za svadobné dary, ktoré ste nám dali.  [Fotky a video](https://drive.google.com/drive/folders/1tc3r9xe5bxCmLjkroRxuYXk6Hx7MwhAw).
+
+-------------------------------------------------------------------------------------------------
+
 ## 11.7.2026
 
 ## Petra & Jozef

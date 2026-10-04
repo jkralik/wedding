@@ -15,6 +15,14 @@ python3 -m http.server 8080
 
 Potom otvor `http://localhost:8080`.
 
+Pre menovky otvor:
+
+```text
+http://localhost:8080/menovky/tlac-menovky.html
+```
+
+Stranka nacita `menovky/2026-06-11-nasa-svadba - Zoznamy.csv`, zoberie prvy stlpec a vygeneruje A4 strany s dvojstrannymi menovkami z `menovky/menovka.svg`.
+
 ## Docker build a push
 
 ```bash
