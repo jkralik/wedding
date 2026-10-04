@@ -17,10 +17,9 @@ Keďže oslava bude deň pred Sviatkom všetkých svätých, poteší nás, ak p
 
 ### Dary
 
-Nežiadame žiadne dary - pre nás je najväčším darom možnosť podeliť sa s vami o radosť z daru, ktorý sme dostali.
+Nežiadame žiadne dary – najväčším darom pre Peťku bude, keď tento deň oslávite spolu s ňou.
 
-- **Prosíme žiadne kvety, výbava domácnosti, prachozberače, figúrky, sošky ani anjelov.** Môžte nám venovať [úmysel na sv. omšu](https://dar.pallotini.sk/).
-- Ak napriek tomu chcete obdarovať nevestu kvetom, tak určite poteší biela ruža 🤍
+- **Prosíme, nenoste kvety, vybavenie domácnosti, lapače prachu, figúrky, sošky ani anjelov.** Ak jej chcete niečo darovať, poteší ju [úmysel na sv. omšu](https://dar.pallotini.sk/).
 
 ### Poďakovanie za dary zosvadby
 
