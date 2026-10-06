@@ -17,7 +17,7 @@ Keďže oslava bude deň pred Sviatkom všetkých svätých, poteší nás, ak p
 
 ### Dary
 
-Nežiadame žiadne dary – najväčším darom pre Peťku bude, keď tento deň oslávite spolu s ňou.
+Najväčším darom pre Peťku bude, keď tento deň oslávite spolu s ňou.
 
 - **Prosíme, nenoste kvety, vybavenie domácnosti, lapače prachu, figúrky, sošky ani anjelov.** Ak jej chcete niečo darovať, poteší ju [úmysel na sv. omšu](https://dar.pallotini.sk/).
 
