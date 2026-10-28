@@ -8,7 +8,9 @@ IMAGE_NAME="ghcr.io/jkralik/wedding"
 IMAGE_TAG="latest"
 WITH_INGRESS="true"
 WITH_TLS="true"
-INGRESS_CLASS="nginx"
+INGRESS_CLASS="public"
+CONTEXT=""
+DRY_RUN="false"
 NAMESPACE="wedding"
 DEPLOYMENT_NAME="wedding-web"
 KUBECTL_CMD=("kubectl")
@@ -23,8 +25,10 @@ Options:
   --image <name>         Docker image name (default: ${IMAGE_NAME})
   --tag <tag>            Docker image tag (default: ${IMAGE_TAG})
   --ingress-class <name> Ingress controller class (default: ${INGRESS_CLASS})
+  --context <name>       Explicit Kubernetes context (required for standalone kubectl)
+  --dry-run              Render manifests without building images or changing the cluster
   --with-ingress         Also deploy ingress resource
-  --with-tls             Also deploy cert-manager ClusterIssuer + ingress TLS config
+  --with-tls             Use existing letsencrypt-prod ClusterIssuer + ingress TLS config
                          (implies --with-ingress)
   -h, --help             Show this help
 
@@ -43,18 +47,24 @@ require_cmd() {
 }
 
 setup_kubectl() {
-  if command -v kubectl >/dev/null 2>&1; then
-    KUBECTL_CMD=("kubectl")
-    return 0
-  fi
-
-  if command -v microk8s >/dev/null 2>&1; then
+  if [[ -z "${CONTEXT}" ]] && command -v microk8s >/dev/null 2>&1; then
     KUBECTL_CMD=("microk8s" "kubectl")
-    return 0
+    CONTEXT="$(microk8s kubectl config current-context)"
+  elif command -v kubectl >/dev/null 2>&1; then
+    KUBECTL_CMD=("kubectl")
+  elif command -v microk8s >/dev/null 2>&1; then
+    KUBECTL_CMD=("microk8s" "kubectl")
+  else
+    echo "Missing required command: kubectl (or microk8s kubectl)" >&2
+    exit 1
   fi
 
-  echo "Missing required command: kubectl (or microk8s kubectl)" >&2
-  exit 1
+  if [[ -z "${CONTEXT}" ]]; then
+    echo "Specify --context explicitly when using standalone kubectl." >&2
+    exit 1
+  fi
+  KUBECTL_CMD+=("--context=${CONTEXT}")
+  kctl config get-contexts "${CONTEXT}" --no-headers >/dev/null
 }
 
 kctl() {
@@ -65,10 +75,18 @@ parse_args() {
   while [[ $# -gt 0 ]]; do
     case "$1" in
       --image)
+        if [[ -z "${2:-}" || "$2" == --* ]]; then
+          echo "Missing value for --image." >&2
+          exit 1
+        fi
         IMAGE_NAME="${2:-}"
         shift 2
         ;;
       --tag)
+        if [[ -z "${2:-}" || "$2" == --* ]]; then
+          echo "Missing value for --tag." >&2
+          exit 1
+        fi
         IMAGE_TAG="${2:-}"
         shift 2
         ;;
@@ -82,6 +100,18 @@ parse_args() {
         ;;
       --with-ingress)
         WITH_INGRESS="true"
+        shift
+        ;;
+      --context)
+        if [[ -z "${2:-}" || "$2" == --* ]]; then
+          echo "Missing value for --context." >&2
+          exit 1
+        fi
+        CONTEXT="$2"
+        shift 2
+        ;;
+      --dry-run)
+        DRY_RUN="true"
         shift
         ;;
       --with-tls)
@@ -105,6 +135,11 @@ parse_args() {
     echo "Image name and tag must not be empty." >&2
     exit 1
   fi
+  if [[ ! "${IMAGE_NAME}" =~ ^[a-z0-9][a-z0-9./:_-]*$ ||
+        ! "${IMAGE_TAG}" =~ ^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$ || ${#IMAGE_TAG} -gt 128 ]]; then
+    echo "Invalid image name or tag." >&2
+    exit 1
+  fi
 
   if [[ ! "${INGRESS_CLASS}" =~ ^[a-z0-9]([-a-z0-9.]*[a-z0-9])?$ || ${#INGRESS_CLASS} -gt 253 || "${INGRESS_CLASS}" == *..* ]]; then
     echo "Ingress class must be a valid Kubernetes DNS subdomain." >&2
@@ -113,7 +148,32 @@ parse_args() {
 }
 
 current_context() {
-  kctl config current-context 2>/dev/null || true
+  printf '%s\n' "${CONTEXT}"
+}
+
+check_cluster() {
+  kctl get namespace kube-system >/dev/null
+  if [[ "${WITH_INGRESS}" == "true" ]]; then
+    kctl get ingressclass "${INGRESS_CLASS}" >/dev/null
+  fi
+  if [[ "${WITH_TLS}" == "true" ]]; then
+    local ready named_ingress solver_class solvers selector
+    ready="$(kctl get clusterissuer letsencrypt-prod -o jsonpath='{.status.conditions[?(@.type=="Ready")].status}')"
+    if [[ "${ready}" != "True" ]]; then
+      echo "Existing ClusterIssuer letsencrypt-prod is not Ready; ask the cluster administrator to configure it." >&2
+      exit 1
+    fi
+    named_ingress="$(kctl get clusterissuer letsencrypt-prod -o jsonpath='{.spec.acme.solvers[*].http01.ingress.name}')"
+    solver_class="$(kctl get clusterissuer letsencrypt-prod -o jsonpath='{.spec.acme.solvers[*].http01.ingress.class}')"
+    solvers="$(kctl get clusterissuer letsencrypt-prod -o jsonpath='{range .spec.acme.solvers[*]}x{end}')"
+    selector="$(kctl get clusterissuer letsencrypt-prod -o jsonpath='{.spec.acme.solvers[*].selector}')"
+    if [[ "${solvers}" != "x" || ( -n "${selector}" && "${selector}" != "{}" ) ||
+          -n "${named_ingress}" || "${solver_class}" != "${INGRESS_CLASS}" ]]; then
+      echo "Unsupported shared issuer solver: expected a single HTTP-01 solver with ingress.class=${INGRESS_CLASS}, without ingress.name." >&2
+      echo "Have the administrator review letsencrypt-prod separately. Wedding deploy will not modify it." >&2
+      exit 1
+    fi
+  fi
 }
 
 load_image_to_local_cluster() {
@@ -167,6 +227,9 @@ main() {
   parse_args "$@"
 
   setup_kubectl
+  if [[ "${DRY_RUN}" != "true" ]]; then
+    check_cluster
+  fi
 
   if [[ "${WITH_TLS}" == "true" ]]; then
     echo "TLS mode enabled: expecting cert-manager and ingress class '${INGRESS_CLASS}' in cluster."
@@ -177,7 +240,7 @@ main() {
   if [[ "${IMAGE_NAME}" == ghcr.io/* ]]; then
     echo "Using remote registry image: ${image_ref}"
     echo "Skipping local Docker build and local cluster image import."
-  else
+  elif [[ "${DRY_RUN}" != "true" ]]; then
     require_cmd docker
     echo "Building image: ${image_ref}"
     docker build -t "${image_ref}" "${SCRIPT_DIR}"
@@ -197,7 +260,7 @@ main() {
     require_cmd microk8s
   fi
 
-  if [[ "${IMAGE_NAME}" != ghcr.io/* ]]; then
+  if [[ "${IMAGE_NAME}" != ghcr.io/* && "${DRY_RUN}" != "true" ]]; then
     load_image_to_local_cluster "${image_ref}"
   fi
 
@@ -213,10 +276,6 @@ main() {
     cp "${K8S_DIR}/ingress.yaml" "${tmp_dir}/ingress.yaml"
   fi
 
-  if [[ "${WITH_TLS}" == "true" ]]; then
-    cp "${K8S_DIR}/cluster-issuer-letsencrypt.yaml" "${tmp_dir}/cluster-issuer-letsencrypt.yaml"
-  fi
-
   cat > "${tmp_dir}/kustomization.yaml" <<EOF
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
@@ -229,12 +288,6 @@ EOF
   if [[ "${WITH_INGRESS}" == "true" ]]; then
     cat >> "${tmp_dir}/kustomization.yaml" <<EOF
   - ingress.yaml
-EOF
-  fi
-
-  if [[ "${WITH_TLS}" == "true" ]]; then
-    cat >> "${tmp_dir}/kustomization.yaml" <<EOF
-  - cluster-issuer-letsencrypt.yaml
 EOF
   fi
 
@@ -258,7 +311,14 @@ patches:
 EOF
   fi
 
-  echo "Applying manifests"
+  if [[ "${DRY_RUN}" == "true" ]]; then
+    kctl kustomize "${tmp_dir}"
+    return 0
+  fi
+
+  echo "Validating manifests (client dry-run)"
+  kctl apply --dry-run=client -k "${tmp_dir}" >/dev/null
+  echo "Applying wedding manifests only"
   kctl apply -k "${tmp_dir}"
 
   if [[ "${IMAGE_TAG}" == "latest" ]]; then

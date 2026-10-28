@@ -66,6 +66,11 @@ Script `deploy-local-k8s.sh`:
 - pre iny nazov image postavi lokalny Docker image
 - pri `kind`/`k3d`/`minikube`/`microk8s` ho nahra do lokalneho klastra
 - aplikuje namespace + deployment + service
+- ingress a TLS su predvolene zapnute, s ingress triedou `public`
+- existujuci spolocny `ClusterIssuer letsencrypt-prod` iba pouziva; nikdy ho nevytvara ani neprepisuje
+- pred zmenami overi dostupnost klastra, ingress triedu a Ready issuer s jednym
+  HTTP-01 solverom `ingress.class` zhodnym s vybranou triedou, bez `ingress.name`
+- pri nevhodnom issueri sa zastavi; jeho opravu musi administrator vykonat samostatne
 
 Spustenie:
 
@@ -74,6 +79,17 @@ Spustenie:
 ```
 
 Default je `--with-ingress --with-tls`.
+
+Bez zmien klastra alebo buildu zobraz vysledne manifesty:
+
+```bash
+./deploy-local-k8s.sh --dry-run
+```
+
+`--dry-run` iba renderuje manifesty, neoveruje DNS, ACME ani stav issuera.
+Pri realnom deployi sa tieto podporovane predpoklady kontroluju pred buildom
+a aplikovanim manifestov; klientsky dry-run navyse overi manifesty.
+Samotny uspech deployu potvrdzuje rollout aplikacie, nie vydanie certifikatu.
 
 Volitelne:
 
@@ -130,8 +146,11 @@ microk8s kubectl -n wedding get ingress,certificate
 
 Docker na Pi nie je pri pouziti publikovaneho GHCR image potrebny.
 GHCR package musi byt verejny; pri sukromnom package nastav `imagePullSecrets`
-v deploymente. Script uprednostnuje samostatny `kubectl`, ak je nainstalovany,
-inak pouzije `microk8s kubectl`.
+v deploymente. Bez `--context` script uprednostnuje lokalny `microk8s kubectl`
+a pripne jeho aktualny kontext pre vsetky prikazy. Pre samostatny `kubectl`
+je `--context` povinny, napriklad `./deploy-local-k8s.sh --context kind-test`.
+Pri explicitnom kontexte sa uprednostni samostatny `kubectl`, ak existuje.
+Globalny aktualny kontext sa nemeni.
 
 Pre HTTPS musia DNS zaznamy oboch domen smerovat na verejnu IP pripojenia Pi
 a router musi presmerovat TCP porty **80 a 443** na Pi. ACME HTTP-01 vyzaduje
@@ -149,6 +168,8 @@ Predpoklady:
 
 - v clustri je nainstalovany Ingress controller (`nginx`)
 - v clustri je nainstalovany `cert-manager`
+- administrator uz nastavil `ClusterIssuer letsencrypt-prod` pre tento cluster;
+  wedding manifesty nespravuju ziadny issuer ani cert-manager
 - DNS `A`/`AAAA` zaznamy pre `petra-jozef.eu` a `www.petra-jozef.eu` smeruju na ingress load balancer
 
 Deploy:
@@ -156,6 +177,10 @@ Deploy:
 ```bash
 kubectl apply -k k8s
 ```
+
+Priama aplikacia cez `kubectl` obchadza kontroly deploy skriptu; pre bezny
+deploy pouzi `./deploy-local-k8s.sh`. Obe cesty aplikuju iba namespace `wedding`
+a jeho aplikacne zdroje, nie spolocny ClusterIssuer.
 
 Kontrola certifikatu:
 
