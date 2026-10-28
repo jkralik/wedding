@@ -8,6 +8,7 @@ IMAGE_NAME="ghcr.io/jkralik/wedding"
 IMAGE_TAG="latest"
 WITH_INGRESS="true"
 WITH_TLS="true"
+INGRESS_CLASS="nginx"
 NAMESPACE="wedding"
 DEPLOYMENT_NAME="wedding-web"
 KUBECTL_CMD=("kubectl")
@@ -21,6 +22,7 @@ Build Docker image, load it into local Kubernetes (kind/k3d/minikube/microk8s), 
 Options:
   --image <name>         Docker image name (default: ${IMAGE_NAME})
   --tag <tag>            Docker image tag (default: ${IMAGE_TAG})
+  --ingress-class <name> Ingress controller class (default: ${INGRESS_CLASS})
   --with-ingress         Also deploy ingress resource
   --with-tls             Also deploy cert-manager ClusterIssuer + ingress TLS config
                          (implies --with-ingress)
@@ -70,6 +72,14 @@ parse_args() {
         IMAGE_TAG="${2:-}"
         shift 2
         ;;
+      --ingress-class)
+        if [[ -z "${2:-}" || "$2" == --* ]]; then
+          echo "Missing value for --ingress-class." >&2
+          exit 1
+        fi
+        INGRESS_CLASS="$2"
+        shift 2
+        ;;
       --with-ingress)
         WITH_INGRESS="true"
         shift
@@ -93,6 +103,11 @@ parse_args() {
 
   if [[ -z "${IMAGE_NAME}" || -z "${IMAGE_TAG}" ]]; then
     echo "Image name and tag must not be empty." >&2
+    exit 1
+  fi
+
+  if [[ ! "${INGRESS_CLASS}" =~ ^[a-z0-9]([-a-z0-9.]*[a-z0-9])?$ || ${#INGRESS_CLASS} -gt 253 || "${INGRESS_CLASS}" == *..* ]]; then
+    echo "Ingress class must be a valid Kubernetes DNS subdomain." >&2
     exit 1
   fi
 }
@@ -154,7 +169,7 @@ main() {
   setup_kubectl
 
   if [[ "${WITH_TLS}" == "true" ]]; then
-    echo "TLS mode enabled: expecting cert-manager and ingress-nginx in cluster."
+    echo "TLS mode enabled: expecting cert-manager and ingress class '${INGRESS_CLASS}' in cluster."
   fi
 
   local image_ref="${IMAGE_NAME}:${IMAGE_TAG}"
@@ -229,6 +244,19 @@ images:
     newName: ${IMAGE_NAME}
     newTag: ${IMAGE_TAG}
 EOF
+
+  if [[ "${WITH_INGRESS}" == "true" ]]; then
+    cat >> "${tmp_dir}/kustomization.yaml" <<EOF
+patches:
+  - target:
+      kind: Ingress
+      name: wedding-web
+    patch: |-
+      - op: replace
+        path: /spec/ingressClassName
+        value: "${INGRESS_CLASS}"
+EOF
+  fi
 
   echo "Applying manifests"
   kctl apply -k "${tmp_dir}"
